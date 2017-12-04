@@ -6,30 +6,36 @@ var colorscale = d3.scale.category10();
 //Legend titles
 var LegendOptions = ['Fantasy', 'Fiction', 'Crime', 'Thriller'];
 
-
+var globalData = [];
 d3.csv("goodreads_with_kindle_price.csv", function(error, data) {
 	if (error) {
 		throw error;
 	}
+	format_prices(data)
 	console.log(data);
+	globalData = data
 
 	var genres = ['Fantasy', 'Fiction', 'Crime', 'Thriller']
 
 	redraw_chart(genres, []);
-
 });
 
 function redraw_chart(genres, years) {
+
+	data = globalData;
+
 	mean_avg_rating_per_genre = calculate_mean_avg_rating_per_genre(data, genres);
 	mean_total_reviews_per_genre = calculate_mean_total_reviews_per_genre(data, genres);
 	mean_total_ratings_per_genre = calculate_mean_total_ratings_per_genre(data, genres);
 	mean_total_pages_per_genre = calculate_mean_total_pages_per_genre(data, genres);
 	mean_total_price_per_genre = calculate_mean_price_per_genre(data, genres);
 
+	console.log("Mean Average Ratings")
 	console.log(mean_avg_rating_per_genre)
 	console.log(mean_total_reviews_per_genre)
 	console.log(mean_total_ratings_per_genre)
 	console.log(mean_total_pages_per_genre)
+	console.log("Mean Price")
 	console.log(mean_total_price_per_genre)
 
 	var d = []
@@ -57,10 +63,10 @@ function redraw_chart(genres, years) {
 	//Will expect that data is in %'s
 	RadarChart.draw("#chart", d, mycfg);
 
-	////////////////////////////////////////////
-	/////////// Initiate legend ////////////////
-	////////////////////////////////////////////
+	draw_legend(genres);
+}
 
+function draw_legend(genres) {
 	var svg = d3.select('#body')
 		.selectAll('svg')
 		.append('svg')
@@ -97,7 +103,7 @@ function redraw_chart(genres, years) {
 	  ;
 	//Create text next to squares
 	legend.selectAll('text')
-	  .data(LegendOptions)
+	  .data(genres)
 	  .enter()
 	  .append("text")
 	  .attr("x", w - 52)
@@ -106,6 +112,17 @@ function redraw_chart(genres, years) {
 	  .attr("fill", "#737373")
 	  .text(function(d) { return d; })
 	  ;
+}
+
+function format_prices(data) {
+	data.forEach(function(d, i) {
+		if (data[i]['kindle_price'] != '') {
+			data[i]['kindle_price'] = data[i]['kindle_price'].substr(1)
+		}
+		else {
+			data[i]['kindle_price'] = ''
+		}
+	});
 }
 
 function calculate_mean_avg_rating_per_genre(data, genres) {
@@ -125,18 +142,6 @@ function calculate_mean_total_pages_per_genre(data, genres) {
 }
 
 function calculate_mean_price_per_genre(data, genres) {
-
-	data.forEach(function(d, i) {
-		if (data[i]['kindle_price'] != '') {
-			data[i]['kindle_price'] = data[i]['kindle_price'].substr(1)
-		}
-		else {
-			data[i]['kindle_price'] = ''
-		}
-	});
-
-	console.log(data);
-
 	return numerical_mean(data, genres, 'kindle_price')
 }
 
@@ -161,7 +166,7 @@ function mean(arr) {
 function sum(arr) {
 	var s = arr.reduce(function(previousValue, currentValue){
     return currentValue + previousValue;
-	});
+	}, 0);
 
 	return s;
 }

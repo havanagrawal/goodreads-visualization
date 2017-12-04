@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	  <script src="RadarChart.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 
     <style>
   		body {
@@ -24,23 +25,40 @@
   	</style>
 
     <script>
-    console.log("Executing");
+      console.log("Executing");
+      var checked = ["Fantasy", "Fiction", "Crime", "Thriller"];
+
       $(document).ready(function() {
         console.log("Ready!");
 
-        var genres = ["Fantasy", "Fiction", "Crime", "Thriller", "Biography", "Horror"];
-
-        for (i in genres) {
-          genre = genres[i];
+        for (i in checked) {
+          genre = checked[i];
           console.log(genre);
-
-          var checkbox = '<input type="checkbox" name="' + genre + '" value="Bike"> I have a bike<br>'
-          $("#genre_selector").append("<p>This was added </p>");
         }
 
+        redraw_chart(checked, []);
+      });
 
-      })
+      function onClickHandler(cb) {
+        console.log(cb);
+        console.log(cb.value);
+        console.log(cb.checked);
 
+
+        if (cb.checked) {
+          checked.push(cb.value);
+        }
+        else {
+          var index = checked.indexOf(cb.value);
+          if (index > -1) {
+            checked.splice(index, 1);
+          }
+        }
+
+        console.log(checked);
+
+        redraw_chart(checked, []);
+      }
     </script>
   </head>
   <body>
@@ -49,15 +67,18 @@
     <div id="genre_selector">
       Genre Selector
 
-      <input type="checkbox" name="genre" value="Fantasy" /> Fantasy
-
-
+      <input type="checkbox" name="genre" value="Fantasy" onclick="onClickHandler(this)" checked="checked"/> Fantasy
+      <input type="checkbox" name="genre" value="Fiction" onclick="onClickHandler(this)" checked="checked"/> Fiction
+      <input type="checkbox" name="genre" value="Crime" onclick="onClickHandler(this)" checked="checked"/> Crime
+      <input type="checkbox" name="genre" value="Thriller" onclick="onClickHandler(this)" checked="checked"/> Thriller
+      <input type="checkbox" name="genre" value="Biography" onclick="onClickHandler(this)"/> Biography
+      <input type="checkbox" name="genre" value="Horror" onclick="onClickHandler(this)"/> Horror
+      <input type="checkbox" name="genre" value="Science Fiction" onclick="onClickHandler(this)"/> Science Fiction
+      <input type="checkbox" name="genre" value="Romance" onclick="onClickHandler(this)"/> Romance
+      <input type="checkbox" name="genre" value="Young Adult" onclick="onClickHandler(this)"/> Young Adult
     </div>
 
 	  <div id="chart"></div>
     </div>
-
-    <script type="text/javascript" src="script.js"></script>
-
   </body>
 </html>
