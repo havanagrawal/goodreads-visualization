@@ -1,10 +1,26 @@
-var w = 700,
-	h = 700;
+function onClickHandler(cb) {
+	console.log(cb);
+	console.log(cb.value);
+	console.log(cb.checked);
+
+	var checked = get_currently_selected_genres()
+
+	if (cb.checked) {
+		checked.push(cb.value);
+	}
+	else {
+		var index = checked.indexOf(cb.value);
+		if (index > -1) {
+			checked.splice(index, 1);
+		}
+	}
+
+	console.log(checked);
+
+	redraw_chart(checked, []);
+}
 
 var colorscale = d3.scale.category10();
-
-//Legend titles
-var LegendOptions = ['Fantasy', 'Fiction', 'Crime', 'Thriller'];
 
 var globalData = [];
 d3.csv("goodreads_with_kindle_price.csv", function(error, data) {
@@ -17,12 +33,26 @@ d3.csv("goodreads_with_kindle_price.csv", function(error, data) {
 
 	var genres = ['Fantasy', 'Fiction', 'Crime', 'Thriller']
 
+	window.addEventListener('resize', function() {
+			var currently_selected = get_currently_selected_genres()
+			console.log("Resize: " + currently_selected);
+			redraw_chart(currently_selected, [])
+	})
+
 	redraw_chart(genres, []);
 });
 
-function redraw_chart(genres, years) {
+function get_currently_selected_genres() {
+	var currently_selected = []
+	$("input[type=checkbox]:checked").each(function(i, e) {
+		currently_selected.push($(e).attr('value'))
+	})
 
-	data = globalData;
+	return currently_selected
+}
+
+function redraw_chart(genres, years) {
+	var data = globalData;
 
 	mean_avg_rating_per_genre = calculate_mean_avg_rating_per_genre(data, genres);
 	mean_total_reviews_per_genre = calculate_mean_total_reviews_per_genre(data, genres);
@@ -30,13 +60,13 @@ function redraw_chart(genres, years) {
 	mean_total_pages_per_genre = calculate_mean_total_pages_per_genre(data, genres);
 	mean_total_price_per_genre = calculate_mean_price_per_genre(data, genres);
 
-	console.log("Mean Average Ratings")
+	/*console.log("Mean Average Ratings")
 	console.log(mean_avg_rating_per_genre)
 	console.log(mean_total_reviews_per_genre)
 	console.log(mean_total_ratings_per_genre)
 	console.log(mean_total_pages_per_genre)
 	console.log("Mean Price")
-	console.log(mean_total_price_per_genre)
+	console.log(mean_total_price_per_genre)*/
 
 	var d = []
 	for (idx in genres) {
@@ -52,25 +82,29 @@ function redraw_chart(genres, years) {
 
 	//Options for the Radar chart, other than default
 	var mycfg = {
-	  w: w,
-	  h: h,
+	  w: $("#radar_container").width() - 500,
+	  h: $("#radar_container").height() - 100,
 	  maxValue: [5, 5000, 80000, 600, 10, 1],
 	  levels: 5,
-	  ExtraWidthX: 300,
+	  ExtraWidthX: 500,
+		TranslateX: 250
 	}
 
 	//Call function to draw the Radar chart
-	//Will expect that data is in %'s
 	RadarChart.draw("#chart", d, mycfg);
 
-	draw_legend(genres);
+	draw_legend(genres, mycfg);
 }
 
-function draw_legend(genres) {
-	var svg = d3.select('#body')
+function draw_legend(genres, mycfg) {
+
+	var w = mycfg.w;
+	var h = mycfg.h;
+
+	var svg = d3.select('#radar_container')
 		.selectAll('svg')
 		.append('svg')
-		.attr("width", w+300)
+		.attr("width", w)
 		.attr("height", h)
 
 	//Create the title for the legend
