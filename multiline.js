@@ -84,8 +84,6 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
 // Change chart size according to window size
     chartObj.update_svg_size = function () {
         chartObj.width = parseInt(chartObj.chartDiv.style("width"), 10) - (chartObj.margin.left + chartObj.margin.right);
-        console.log(chartObj)
-        console.log("Height recalculated: " + parseInt(chartObj.chartDiv.style("height"), 10));
         chartObj.height = parseInt(chartObj.chartDiv.style("height"), 10) - (chartObj.margin.top + chartObj.margin.bottom);
 
         /* Update the range of the scale with new width/height */

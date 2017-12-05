@@ -3,18 +3,35 @@ $(document).ready(function(){
 	google.charts.setOnLoadCallback(drawChart);
 });
 
-function drawChart(yRange=[1912,2017]) {
-	d3.csv("goodreads_extract_vishnu.csv", function(data) {
+var calendar_data = []
+
+d3.csv("goodreads_extract_vishnu.csv", function(data) {
+	calendar_data = data;
+	drawChart();
+})
+
+function drawChart(yRange=[1980,2017]) {
 		var monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
-		var sum =0;
+		var sum = 0;
 		var pdate ={};
 		var new_date = []
-		data.forEach(function(d) {
-			if (d.date_key != '' && (d.year >= yRange[0] && d.year <= yRange[1]) ){
-		/*		var y = '2017-';
-				var date_arr = d.publish_date.split(' ')[0].split('-').slice(1,3);
-				var d_key = y.concat(date_arr.join('-'));*/
-				//console.log(d.date_key)
+
+		var genres = get_currently_selected_genres();
+		console.log(genres);
+
+		calendar_data.forEach(function(d) {
+
+			var toSkip = true;
+
+			for (i in genres) {
+				var genre = genres[i];
+				if (d[genre] == "TRUE") {
+					toSkip = false;
+					break;
+				}
+			}
+			
+			if (d.date_key != '' && (d.year >= yRange[0] && d.year <= yRange[1]) && !toSkip){
 				if( pdate[d.date_key]  === undefined){
 					pdate[d.date_key] = 1;
 				}
@@ -24,9 +41,11 @@ function drawChart(yRange=[1912,2017]) {
 			}
 		});
 
+		console.log(pdate);
+
 		var dataTable = new google.visualization.DataTable();
 		dataTable.addColumn({ type: 'date', id: 'Date' });
-	    dataTable.addColumn({ type: 'number', id: 'book_n' });
+	  dataTable.addColumn({ type: 'number', id: 'book_n' });
 		dataTable.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
 
 		Object.keys(pdate).forEach(function(e){
@@ -45,12 +64,9 @@ function drawChart(yRange=[1912,2017]) {
 						fontSize: 1
 					}
 		 },
-		 title: "Book Releases"+yRange[0]+' - '+yRange[1],
+		 title: "Book Releases: " + yRange[0] + ' - ' + yRange[1],
 		 height: 350,
 		 tooltip: { isHtml: true }
 	   };
 		chart.draw(dataTable, options);
-	});
-
-
 }
