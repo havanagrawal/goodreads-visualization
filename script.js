@@ -39,8 +39,38 @@ d3.csv("goodreads_with_kindle_price.csv", function(error, data) {
 			redraw_chart(currently_selected, [])
 	})
 
+	var years = data.map(d => +d.publish_year);
+	years = years.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+
+	populate_pill_values(years);
+
 	redraw_chart(genres, []);
 });
+
+function populate_pill_values(years) {
+	var data = globalData;
+
+	console.log(data);
+
+	var filtered_years = data.filter(d => years.indexOf(+d.publish_year) != -1)
+	console.log(filtered_years);
+
+	var genres = get_all_genres();
+
+	var count_map = {};
+	for (i in genres) {
+		genre = genres[i];
+		count_map[genre] = filtered_years.filter(d => d[genre] == "True").length;
+	}
+
+	console.log(count_map);
+
+	$("span.pill").each(function(i, e) {
+		e.innerHTML = count_map[e.id]
+	});
+
+	console.log(genres);
+}
 
 function get_currently_selected_genres() {
 	var currently_selected = []
@@ -49,6 +79,15 @@ function get_currently_selected_genres() {
 	})
 
 	return currently_selected
+}
+
+function get_all_genres() {
+	var all_genres = []
+	$("input[type=checkbox]").each(function(i, e) {
+		all_genres.push($(e).attr('value'))
+	})
+
+	return all_genres;
 }
 
 function redraw_chart(genres, years) {

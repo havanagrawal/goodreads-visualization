@@ -36,6 +36,25 @@
         left: 20px;
         margin: 0px auto;
   		}
+
+      .pill {
+        border-top-left-radius: 50em;
+        border-bottom-left-radius: 50em;
+        border-top-right-radius: 50em;
+        border-bottom-right-radius: 50em;
+
+        border: 1px solid black;
+        font-size: 90%;
+        padding: 1px;
+        padding-left: 2px;
+        padding-right: 2px;
+      }
+
+      .genre_option {
+        height: 50px;
+        padding: 20px;
+        margin: 20px;
+      }
   	</style>
   </head>
   <body class="keen-dashboard" style="padding-top: 80px;">
@@ -94,48 +113,71 @@
                 <div class="row">
                   <div class="col-sm-3">
                     <input type="checkbox" name="genre" value="Fantasy" onclick="onClickHandler(this)" checked="checked"/> Fantasy
+                    <span id="Fantasy" class="pill">0</span>
                     <br/>
 
                     <input type="checkbox" name="genre" value="Fiction" onclick="onClickHandler(this)" checked="checked"/> Fiction
+                    <span id="Fiction" class="pill">0</span>
                     <br/>
+                    </span>
 
                     <input type="checkbox" name="genre" value="Crime" onclick="onClickHandler(this)" checked="checked"/> Crime
+                    <span id="Crime" class="pill">0</span>
                     <br/>
 
                     <input type="checkbox" name="genre" value="Thriller" onclick="onClickHandler(this)" checked="checked"/> Thriller
+                    <span id="Thriller" class="pill">0</span>
                     <br/>
-                  </div>
 
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="genre" value="Biography" onclick="onClickHandler(this)"/> Biography
-                    <br/>
-                    <input type="checkbox" name="genre" value="Horror" onclick="onClickHandler(this)"/> Horror
-                    <br/>
-                    <input type="checkbox" name="genre" value="Science Fiction" onclick="onClickHandler(this)"/> Science Fiction
-                    <br/>
-                    <input type="checkbox" name="genre" value="Romance" onclick="onClickHandler(this)"/> Romance
-                    <br/>
-                  </div>
-
-                  <div class="col-sm-3">
-                    <input type="checkbox" name="genre" value="Young Adult" onclick="onClickHandler(this)"/> Young Adult
-                    <br/>
-                    <input type="checkbox" name="genre" value="Mystery" onclick="onClickHandler(this)"/> Mystery
-                    <br/>
-                    <input type="checkbox" name="genre" value="Magic" onclick="onClickHandler(this)"/> Magic
-                    <br/>
-                    <input type="checkbox" name="genre" value="Nonfiction" onclick="onClickHandler(this)"/> Non Fiction
-                    <br/>
-                  </div>
-
-                  <div class="col-sm-3">
                     <input type="checkbox" name="genre" value="Childrens" onclick="onClickHandler(this)"/> Children
+                    <span id="Childrens" class="pill">0</span>
                     <br/>
+                  </div>
+
+                  <div class="col-sm-1">
+                  </div>
+
+                  <div class="col-sm-4">
+                    <input type="checkbox" name="genre" value="Biography" onclick="onClickHandler(this)"/> Biography
+                    <span id="Biography" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Horror" onclick="onClickHandler(this)"/> Horror
+                    <span id="Horror" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Science Fiction" onclick="onClickHandler(this)"/> Science Fiction
+                    <span id="Science Fiction" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Romance" onclick="onClickHandler(this)"/> Romance
+                    <span id="Romance" class="pill">0</span>
+                    <br/>
+
                     <input type="checkbox" name="genre" value="Adventure" onclick="onClickHandler(this)"/> Adventure
+                    <span id="Adventure" class="pill">0</span>
                     <br/>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <input type="checkbox" name="genre" value="Young Adult" onclick="onClickHandler(this)"/> Young Adult
+                    <span id="Young Adult" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Mystery" onclick="onClickHandler(this)"/> Mystery
+                    <span id="Mystery" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Magic" onclick="onClickHandler(this)"/> Magic
+                    <span id="Magic" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Nonfiction" onclick="onClickHandler(this)"/> Non Fiction
+                    <span id="Nonfiction" class="pill">0</span>
+                    <br/>
+
                     <input type="checkbox" name="genre" value="Humor" onclick="onClickHandler(this)"/> Humor
-                    <br/>
-                    <input type="checkbox" name="genre" value="Classics" onclick="onClickHandler(this)"/> Classics
+                    <span id="Humor" class="pill">0</span>
                     <br/>
                   </div>
                 </div>
