@@ -147,7 +147,7 @@ function redraw_chart(genres, years) {
 	var mycfg = {
 	  w: $("#radar_container").width() - 600,
 	  h: $("#radar_container").width() - 600,
-	  maxValue: [5, 5000, 80000, 600, 10, 1],
+	  maxValue: [5, 6000, 80000, 500, 10, 1],
 	  levels: 5,
 	  ExtraWidthX: 500,
 		TranslateX: 250
@@ -155,60 +155,6 @@ function redraw_chart(genres, years) {
 
 	//Call function to draw the Radar chart
 	RadarChart.draw("#chart", d, mycfg);
-
-	draw_legend(genres, mycfg);
-}
-
-function draw_legend(genres, mycfg) {
-
-	var w = mycfg.w;
-	var h = mycfg.h;
-
-	var svg = d3.select('#radar_container')
-		.select('svg')
-		//.append('svg')
-		//.attr("width", 100)
-		//.attr("height", 200)
-
-	//Create the title for the legend
-	/*var text = svg.append("text")
-		.attr("class", "title")
-		.attr('transform', 'translate(400,15)')
-		.attr("x", w - 70)
-		.attr("y", 10)
-		.attr("font-size", "18px")
-		.attr("fill", "#404040")
-		.text("Genres");*/
-
-	//Initiate Legend
-	var legend = svg.append("g")
-		.attr("class", "legend")
-		.attr("height", 100)
-		.attr("width", 200)
-		.attr('transform', 'translate(400,50)')
-
-	//Create colour squares
-	legend.selectAll('rect')
-	  .data(genres)
-	  .enter()
-	  .append("rect")
-	  .attr("x", w - 65)
-	  .attr("y", function(d, i){ return i * 20;})
-	  .attr("width", 10)
-	  .attr("height", 10)
-	  .style("fill", function(d, i){ return colorscale(i);})
-	  ;
-	//Create text next to squares
-	legend.selectAll('text')
-	  .data(genres)
-	  .enter()
-	  .append("text")
-	  .attr("x", w - 52)
-	  .attr("y", function(d, i){ return i * 20 + 9;})
-	  .attr("font-size", "15px")
-	  .attr("fill", "#737373")
-	  .text(function(d) { return d; })
-	  ;
 }
 
 function format_prices(data) {
