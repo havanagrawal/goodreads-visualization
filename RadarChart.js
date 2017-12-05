@@ -192,6 +192,7 @@ var RadarChart = {
 						.style('opacity', 1);
 
 					z = "polygon."+d3.select(this).attr("class");
+          console.log("Polygon selector: " + z);
           color = d3.select(this).style("fill")
 
 					g.selectAll("polygon")

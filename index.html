@@ -18,12 +18,18 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-	  <script src="RadarChart.js"></script>
-    <script src="multiline.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  	<script type="text/javascript" src="rSlider.min.js"></script>
+    <script type="text/javascript" src="calendar.js"></script>
+  	<script type="text/javascript" src="slider.js"></script>
+
+	  <script type="text/javascript" src="RadarChart.js"></script>
+    <script type="text/javascript" src="multiline.js"></script>
     <script type="text/javascript" src="script.js"></script>
 
     <link rel="stylesheet" type="text/css" href="keen-dashboards.css" />
     <link rel="stylesheet" type="text/css" href="mycss.css" />
+    <link rel="stylesheet" href="rSlider.min.css" />
 
     <style>
   		body {
@@ -97,7 +103,7 @@
             </div>
             <div class="chart-stage" id="calendar_chart">
               <div id="grid-1-1">
-                <img data-src="holder.js/100%x240/white/text:#grid-1-1">
+                <div id="calendar_basic" style="width: 1000px; height: 250px;"></div>
               </div>
             </div>
             <div class="chart-notes">
@@ -201,7 +207,6 @@
             </div>
             <div class="chart-stage">
               <div id="legend" style="height: 100px">
-
               </div>
             </div>
             <div class="chart-notes">
@@ -248,8 +253,10 @@
             <div class="chart-title">
               Time Slider
             </div>
-            <div class="chart-stage">
-              <img data-src="holder.js/100%x120/white">
+            <div class="chart-stage" style="height: 100px;">
+              <div class="slider-container" style="margin-left:30px;" >
+                <input type="text" id="slider" class="slider" />
+              </div>
             </div>
             <div class="chart-notes">
               Slider both ends of the time slider

@@ -138,10 +138,12 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
           .attr("transform", "translate(" + chartObj.margin.left + "," + chartObj.margin.top + ")");
 
         // Draw Lines
+        var k = 0;
         for (var y  in yObjs) {
             yObjs[y].path = chartObj.svg.append("path")
               .datum(chartObj.data)
               .attr("class", "line")
+              .attr("id", "lineid_" + k)
               .attr("d", yObjs[y].line)
               .style("stroke", color(y))
               .attr("data-series", y)
@@ -150,6 +152,8 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
               }).on("mouseout", function () {
                 focus.transition().delay(700).style("display", "none");
               }).on("mousemove", mousemove);
+
+            k += 1;
         }
 
 
@@ -184,11 +188,56 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
         //Draw legend
         //var legend = chartObj.mainDiv.append('div').attr("class", "legend");
         var legend = d3.select("#legend").append('div').attr("class", "legend");
+        var k = 0;
         for (var y  in yObjs) {
             series = legend.append('div');
-            series.append('div').attr("class", "series-marker").style("background-color", color(y));
+            series.append('div')
+              .attr("class", "series-marker")
+              .attr("id", "legend_" + k)
+              .style("background-color", color(y))
+              .on('mouseover', function(d, i) {
+                console.log("Mouseover on legend!");
+
+                var id = $(this).attr("id")
+                id_number = id.substr(id.indexOf("_") + 1)
+
+                z = "polygon." + "radar-chart-serie" + id_number;
+                z2 = "#lineid_" + id_number
+                color = d3.select(this).style("background-color")
+
+                d3.selectAll(".line")
+                  .transition(200)
+                  .style("stroke-opacity", 0.2)
+
+                d3.selectAll(z2)
+                  .transition(200)
+                  .style("stroke-opacity", 1)
+
+      					d3.selectAll("polygon")
+      						.transition(200)
+                  .style("stroke-opacity", 0.3)
+      						.style("fill-opacity", 0.1);
+      					d3.selectAll(z)
+      						.transition(200)
+                  .style("stroke-opacity", 1)
+                  .style("fill", color)
+      						.style("fill-opacity", .4);
+
+              })
+              .on('mouseout', function() {
+      					d3.selectAll("polygon")
+      						.transition(200)
+                  .style("fill", "#FFFFFF")
+      						.style("fill-opacity", 0)
+                  .style("stroke-opacity", 0.8);
+
+                d3.selectAll(".line")
+                  .style("stroke-opacity", 0.8);
+          		});
             series.append('p').text(y);
             yObjs[y].legend = series;
+
+            k = k + 1;
         }
 
         // Overlay to capture hover
