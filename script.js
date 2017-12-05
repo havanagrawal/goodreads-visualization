@@ -1,15 +1,31 @@
-function onClickHandler(cb) {
-	console.log(cb);
-	console.log(cb.value);
-	console.log(cb.checked);
+var all_years = new Array(2017 - 1912).fill().map((d, i) => i + 1912);
 
+function onClickHandler(cb) {
 	var checked = get_currently_selected_genres();
 	console.log(checked);
 
 	$("#legend").html("");
 
-	redraw_chart(checked, []);
+	redraw_chart(checked, all_years);
 	draw_line_chart(checked);
+}
+
+function yearUpdated(from, to) {
+	to = to + 1;
+	var checked = get_currently_selected_genres();
+	console.log(checked);
+
+	$("#legend").html("");
+
+	console.log(from);
+	console.log(to);
+
+	var years = new Array(to - from).fill().map((d, i) => i + from);
+	console.log(years);
+
+	redraw_chart(checked, years);
+	draw_line_chart(checked);
+	populate_pill_values(years);
 }
 
 var colorscale = d3.scale.category10();
@@ -24,20 +40,19 @@ d3.csv("goodreads_extract_semifinal.csv", function(error, data) {
 	console.log(data);
 	globalData = data
 
-	var genres = ['Fantasy', 'Fiction', 'Crime', 'Thriller']
-
 	window.addEventListener('resize', function() {
 			var currently_selected = get_currently_selected_genres()
 			console.log("Resize: " + currently_selected);
-			redraw_chart(currently_selected, [])
+
+			redraw_chart(currently_selected, all_years)
 	})
 
+	var genres = get_currently_selected_genres()
 	var years = data.map(d => +d.publish_year);
 	years = years.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
 
 	populate_pill_values(years);
-
-	redraw_chart(genres, []);
+	redraw_chart(genres, years);
 });
 
 var line_data = []
@@ -92,8 +107,6 @@ function populate_pill_values(years) {
 	$("span.pill").each(function(i, e) {
 		e.innerHTML = count_map[e.id]
 	});
-
-	console.log(genres);
 }
 
 function get_currently_selected_genres() {
@@ -115,7 +128,10 @@ function get_all_genres() {
 }
 
 function redraw_chart(genres, years) {
-	var data = globalData;
+	console.log("Filtering for following years: " + years);
+	var data = globalData.filter(d => years.indexOf(+d.publish_year) != -1);
+	console.log("Filtered Data by Year!");
+	console.log(data);
 
 	mean_avg_rating_per_genre = calculate_mean_avg_rating_per_genre(data, genres);
 	mean_total_reviews_per_genre = calculate_mean_total_reviews_per_genre(data, genres);
