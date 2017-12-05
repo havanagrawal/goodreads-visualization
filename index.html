@@ -19,9 +19,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	  <script src="RadarChart.js"></script>
+    <script src="multiline.js"></script>
     <script type="text/javascript" src="script.js"></script>
 
     <link rel="stylesheet" type="text/css" href="keen-dashboards.css" />
+    <link rel="stylesheet" type="text/css" href="mycss.css" />
 
     <style>
   		body {
@@ -191,6 +193,22 @@
             </div>
           </div>
         </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="chart-wrapper">
+            <div class="chart-title">
+              Legend
+            </div>
+            <div class="chart-stage">
+              <div id="legend" style="height: 100px">
+
+              </div>
+            </div>
+            <div class="chart-notes">
+              Slider both ends of the time slider
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="row" >
@@ -239,6 +257,20 @@
           </div>
         </div>
 
+        <div class="col-sm-6 col-md-4">
+          <div class="chart-wrapper">
+            <div class="chart-title">
+              Female to Male Protagonist Ratio
+            </div>
+            <div class="chart-stage" style="height:500px" >
+              <div id="chart-line1" class="line-chart-puru"></div>
+            </div>
+            <div class="chart-notes">
+              Slider both ends of the time slider
+            </div>
+          </div>
+        </div>
+
 
       </div>
 
@@ -249,4 +281,5 @@
     </div>
     </div>
   </body>
+  </script>
 </html>

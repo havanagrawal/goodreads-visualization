@@ -6,13 +6,17 @@ function onClickHandler(cb) {
 	var checked = get_currently_selected_genres();
 	console.log(checked);
 
+	$("#legend").html("");
+
 	redraw_chart(checked, []);
+	draw_line_chart(checked);
 }
 
 var colorscale = d3.scale.category10();
 
 var globalData = [];
-d3.csv("goodreads_with_kindle_price.csv", function(error, data) {
+
+d3.csv("goodreads_extract_semifinal.csv", function(error, data) {
 	if (error) {
 		throw error;
 	}
@@ -35,6 +39,37 @@ d3.csv("goodreads_with_kindle_price.csv", function(error, data) {
 
 	redraw_chart(genres, []);
 });
+
+var line_data = []
+
+d3.csv('line_data_clean.csv', function(error, data) {
+	if (error) {
+		throw error
+	}
+
+	line_data = data;
+
+	var checked = get_currently_selected_genres();
+
+	draw_line_chart(checked)
+})
+
+function draw_line_chart(genres) {
+
+	var plot_map = {}
+
+	for (i in genres) {
+		var genre = genres[i];
+		plot_map[genre] = {column: genre}
+	}
+
+	var chart = makeLineChart(line_data, 'year', plot_map , {xAxis: 'Years', yAxis: 'Mean Female-To-Male Ratio'});
+
+	$("#chart-line1").html("");
+
+	chart.bind("#chart-line1");
+	chart.render();
+}
 
 function populate_pill_values(years) {
 	var data = globalData;
