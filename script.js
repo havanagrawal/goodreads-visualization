@@ -3,18 +3,7 @@ function onClickHandler(cb) {
 	console.log(cb.value);
 	console.log(cb.checked);
 
-	var checked = get_currently_selected_genres()
-
-	if (cb.checked) {
-		checked.push(cb.value);
-	}
-	else {
-		var index = checked.indexOf(cb.value);
-		if (index > -1) {
-			checked.splice(index, 1);
-		}
-	}
-
+	var checked = get_currently_selected_genres();
 	console.log(checked);
 
 	redraw_chart(checked, []);
@@ -121,8 +110,8 @@ function redraw_chart(genres, years) {
 
 	//Options for the Radar chart, other than default
 	var mycfg = {
-	  w: $("#radar_container").width() - 500,
-	  h: $("#radar_container").height() - 100,
+	  w: $("#radar_container").width() - 600,
+	  h: $("#radar_container").width() - 600,
 	  maxValue: [5, 5000, 80000, 600, 10, 1],
 	  levels: 5,
 	  ExtraWidthX: 500,
@@ -141,27 +130,27 @@ function draw_legend(genres, mycfg) {
 	var h = mycfg.h;
 
 	var svg = d3.select('#radar_container')
-		.selectAll('svg')
-		.append('svg')
-		.attr("width", w)
-		.attr("height", h)
+		.select('svg')
+		//.append('svg')
+		//.attr("width", 100)
+		//.attr("height", 200)
 
 	//Create the title for the legend
-	var text = svg.append("text")
+	/*var text = svg.append("text")
 		.attr("class", "title")
-		.attr('transform', 'translate(90,0)')
+		.attr('transform', 'translate(400,15)')
 		.attr("x", w - 70)
 		.attr("y", 10)
-		.attr("font-size", "12px")
+		.attr("font-size", "18px")
 		.attr("fill", "#404040")
-		.text("Genres");
+		.text("Genres");*/
 
 	//Initiate Legend
 	var legend = svg.append("g")
 		.attr("class", "legend")
 		.attr("height", 100)
 		.attr("width", 200)
-		.attr('transform', 'translate(90,20)')
+		.attr('transform', 'translate(400,50)')
 
 	//Create colour squares
 	legend.selectAll('rect')
@@ -181,7 +170,7 @@ function draw_legend(genres, mycfg) {
 	  .append("text")
 	  .attr("x", w - 52)
 	  .attr("y", function(d, i){ return i * 20 + 9;})
-	  .attr("font-size", "11px")
+	  .attr("font-size", "15px")
 	  .attr("fill", "#737373")
 	  .text(function(d) { return d; })
 	  ;
