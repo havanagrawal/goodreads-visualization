@@ -80,14 +80,13 @@
           <a class="navbar-brand" href="../">
             <span class="glyphicon glyphicon-chevron-left"></span>
           </a>
-          <a class="navbar-brand" href="./">Layouts &raquo; Hero Thirds</a>
+          <a class="navbar-brand" href="./">Goodreads: A Visual Analysis</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-left">
             <li><a href="https://keen.io">Home</a></li>
             <li><a href="https://keen.io/team">Team</a></li>
-            <li><a href="https://github.com/keenlabs/dashboards/tree/gh-pages/layouts/hero-thirds">Source</a></li>
-            <li><a href="https://groups.google.com/forum/#!forum/keen-io-devs">Community</a></li><li><a href="http://stackoverflow.com/questions/tagged/keen-io?sort=newest&pageSize=15">Technical Support</a></li>
+            <li><a href="https://github.com/havanagrawal/goodreads-visualization">Source</a></li>
           </ul>
         </div>
       </div>
@@ -96,14 +95,17 @@
     <div class="container-fluid">
 
       <div class="row">
+
+        <!-- Calendar Chart -->
         <div class="col-sm-7">
           <div class="chart-wrapper">
             <div class="chart-title">
               Calendar Chart: Publish Dates Through The Years
             </div>
-            <div class="chart-stage" id="calendar_chart">
+            <div class="chart-stage" id="calendar_chart" style="height: 250px">
               <div id="grid-1-1">
-                <div id="calendar_basic" style="width: 1000px; height: 250px;"></div>
+                <br />
+                <div id="calendar_basic" style="width: 1000px; height: 250px; padding-left: 10px; padding-top: 5px"></div>
               </div>
             </div>
             <div class="chart-notes">
@@ -196,40 +198,6 @@
           </div>
         </div>
 
-
-        <!-- Common Legend for Spider + Line chart-->
-        <div class="col-sm-6 col-md-5">
-          <div class="chart-wrapper">
-            <div class="chart-title">
-              Legend
-            </div>
-            <div class="chart-stage">
-              <div id="legend" style="height: 90px">
-              </div>
-            </div>
-            <div class="chart-notes">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row" >
-
-        <!-- Radar/Spider Chart for Genres -->
-        <div class="col-sm-6 col-md-7">
-          <div class="chart-wrapper">
-            <div class="chart-title">
-              Radar Chart: Comparison of Genres (Average Values Aggregated By Genre)
-            </div>
-            <div class="chart-stage" style="height:700px" id="radar_container">
-              <div id="chart"></div>
-            </div>
-            <div class="chart-notes">
-            </div>
-          </div>
-        </div>
-
-
         <!-- Time Slider -->
         <div class="col-sm-6 col-md-5">
           <div class="chart-wrapper">
@@ -246,15 +214,46 @@
             </div>
           </div>
         </div>
+      </div>
 
+      <div class="row" >
 
-        <!-- Fame To Male Ratio Line Chart-->
+        <!-- Radar/Spider Chart for Genres -->
+        <div class="col-sm-6 col-md-7">
+          <div class="chart-wrapper" style="margin-top: -30px">
+            <div class="chart-title">
+              Radar Chart: Comparison of Genres (Average Values Aggregated By Genre)
+            </div>
+            <div class="chart-stage" style="height:600px;" id="radar_container">
+              <div id="chart"></div>
+            </div>
+            <div class="chart-notes">
+            </div>
+          </div>
+        </div>
+
+        <!-- Common Legend for Spider + Line chart-->
+        <div class="col-sm-6 col-md-5">
+          <div class="chart-wrapper">
+            <div class="chart-title">
+              Legend
+            </div>
+            <div class="chart-stage">
+              <div id="legend" style="height: 90px">
+              </div>
+            </div>
+            <div class="chart-notes">
+            </div>
+          </div>
+        </div>
+
+        <!-- Female To Male Ratio Line Chart-->
         <div class="col-sm-6 col-md-5">
           <div class="chart-wrapper">
             <div class="chart-title">
               Female to Male Protagonist Ratio
             </div>
-            <div class="chart-stage" style="height:500px" >
+            <div class="chart-stage" style="height:380px" >
               <div id="chart-line1" class="line-chart-puru"></div>
             </div>
             <div class="chart-notes">

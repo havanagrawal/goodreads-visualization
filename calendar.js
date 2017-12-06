@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	google.charts.load("current", {packages:["calendar"]});
 	google.charts.setOnLoadCallback(drawChart);
+
 });
 
 var calendar_data = []
@@ -48,15 +49,19 @@ function drawChart(yRange=[1980,2017]) {
 		Object.keys(pdate).forEach(function(e){
 			var nd = new Date(e)
 			nd.setDate(nd.getDate() + 1);
-			var tt_content = '<div style="padding:5px 5px 5px 5px; z-index: 5; font-size:16;background: #ffffff;color: #1a1a1a;"><p style="font-family:sans-serif;" >' +nd.getDate()+', '+monthNames[nd.getMonth()]+'<br>No of books released: '+pdate[e]+'</p></div>';
-			dataTable.addRow([nd , pdate[e], tt_content]);
+
+			var tooltip_content = '<p style="font-family:sans-serif;" >' + nd.getDate() + ' ' + monthNames[nd.getMonth()] + '<br/> No of books released: ' + pdate[e] + '</p>'
+			var div_open = '<div style="padding:5px 5px 5px 5px; z-index: 5; font-size:16;background: #ffffff;color: #1a1a1a;">'
+			var div_close = '</div>'
+			var tt_html = div_open + tooltip_content + div_close;
+			dataTable.addRow([nd , pdate[e], tt_html]);
 		});
 
 	   var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
 
 	   var options = {
 			 calendar: {
-				 cellSize: 17,
+				 cellSize: 18,
 				 yearLabel: {
 				 		fontName: 'Times-Roman',
 						fontSize: 1

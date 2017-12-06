@@ -1,12 +1,21 @@
 var all_years = new Array(2017 - 1912).fill().map((d, i) => i + 1912);
 
 function onClickHandler(cb) {
+	inputControlUpdateHandler()
+}
+
+function yearUpdated() {
+	inputControlUpdateHandler()
+}
+
+function inputControlUpdateHandler() {
 	var checked = get_currently_selected_genres();
 	$("#legend").html("");
 
 	var fromTo = get_current_year_range();
 	var yearRange = makeYearRange(fromTo[0], fromTo[1]);
 
+	populate_pill_values(yearRange);
 	redraw_chart(checked, yearRange);
 	draw_line_chart(checked, yearRange);
 	drawChart(fromTo);
@@ -15,21 +24,6 @@ function onClickHandler(cb) {
 function makeYearRange(from, to) {
 	return new Array(to - from).fill().map((d, i) => i + from);
 }
-
-function yearUpdated(from, to) {
-	to = to + 1;
-
-	$("#legend").html("");
-
-	var checked = get_currently_selected_genres();
-	var years = makeYearRange(from, to)
-
-	redraw_chart(checked, years);
-	draw_line_chart(checked, years);
-	populate_pill_values(years);
-}
-
-var colorscale = d3.scale.category10();
 
 var globalData = [];
 
@@ -117,7 +111,6 @@ function get_current_year_range() {
 	var years = []
 	$('.rs-tooltip').each(function() {
 		var year = +($(this).text());
-		console.log(year);
 		years.push(year);
 	});
 
