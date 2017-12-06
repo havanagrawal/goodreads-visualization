@@ -26,7 +26,8 @@ var RadarChart = {
   	  }
   	}
 
-	var allAxis = (d[0].map(function(i, j){return i.axis}));
+	var allAxis = (d[0].map(function(i, j) {return i.axis}));
+  var allAxisIds = (d[0].map(function(i, j) {return i.id}));
 	var total = allAxis.length;
 	var radius = cfg.factor*Math.min(cfg.w/2, cfg.h/2);
 	d3.select(id).select("svg").remove();
@@ -94,7 +95,7 @@ var RadarChart = {
 		.style("stroke-width", "1px");
 
 	axis.append("text")
-		.attr("class", "legend")
+		.attr("class", "legend axistext")
 		.text(function(d){return d})
 		.style("font-family", "sans-serif")
 		.style("font-size", "12px")
@@ -108,6 +109,9 @@ var RadarChart = {
 		.attr("y", function(d, i){
       var angle = i*cfg.radians/total
       return cfg.h/2 * (1 - Math.cos(angle)) - 20*Math.cos(angle);
+    })
+    .attr("id", function(d, i) {
+      return allAxisIds[i];
     });
 
 

@@ -11,10 +11,19 @@ function yearUpdated() {
 }
 
 function inputControlUpdateHandler() {
+
+	$('.axistext').click(function(elem) {
+		var axisId = elem.target.id
+		choice = axisId;
+		console.log(choice);
+		$('#secondary-chart-title').html(name_map[axisId] + " Over Time")
+		draw_line_chart(axisId);
+	})
+
 	var checked = get_currently_selected_genres();
 
 	var fromTo = get_current_year_range();
-	var yearRange = makeYearRange(fromTo[0], fromTo[1]);
+	var yearRange = makeYearRange(fromTo[0], fromTo[1] + 1);
 
 	populate_pill_values(yearRange);
 	redraw_chart(checked, yearRange);
@@ -90,7 +99,7 @@ function draw_line_chart(feature_name) {
 	var plot_map = {}
 	var genres = get_currently_selected_genres();
 	var fromTo = get_current_year_range()
-	var years = makeYearRange(fromTo[0], fromTo[1])
+	var years = makeYearRange(fromTo[0], fromTo[1] + 1)
 
 	for (i in genres) {
 		var genre = genres[i];
@@ -174,11 +183,31 @@ function redraw_chart(genres, years) {
 	for (idx in genres) {
 		genre = genres[idx]
 		d.push([
-			{axis:"Average Rating", value: mean_avg_rating_per_genre[genre]},
-			{axis:"#Reviews", value: mean_total_reviews_per_genre[genre]},
-			{axis:"#Ratings", value: mean_total_ratings_per_genre[genre]},
-			{axis: "#Pages", value: mean_total_pages_per_genre[genre]},
-			{axis: 'Kindle Price', value: mean_total_price_per_genre[genre]}
+			{
+				axis: "Average Rating",
+				value: mean_avg_rating_per_genre[genre],
+				id: "avg_ratings"
+			},
+			{
+				axis: "Number of Reviews",
+				value: mean_total_reviews_per_genre[genre],
+				id: "num_reviews"
+			},
+			{
+				axis: "Number of Ratings",
+				value: mean_total_ratings_per_genre[genre],
+				id: "num_ratings"
+			},
+			{
+				axis: "Number of Pages",
+				value: mean_total_pages_per_genre[genre],
+				id: "num_pages"
+			},
+			{
+				axis: 'Kindle Price ($)',
+				value: mean_total_price_per_genre[genre],
+				id: 'kindle_price'
+			}
 		])
 	}
 
@@ -186,7 +215,7 @@ function redraw_chart(genres, years) {
 	var mycfg = {
 	  w: $("#radar_container").width() - 600,
 	  h: $("#radar_container").width() - 600,
-	  maxValue: [5, 6000, 80000, 500, 10, 1],
+	  maxValue: [5, 6000, 100000, 500, 10, 1],
 	  levels: 5,
 	  ExtraWidthX: 500,
 		TranslateX: 250
@@ -194,6 +223,14 @@ function redraw_chart(genres, years) {
 
 	//Call function to draw the Radar chart
 	RadarChart.draw("#chart", d, mycfg);
+
+	$('.axistext').click(function(elem) {
+		var axisId = elem.target.id
+		choice = axisId;
+		console.log(choice);
+		$('#secondary-chart-title').html(name_map[axisId] + " Over Time")
+		draw_line_chart(axisId);
+	})
 }
 
 function format_prices(data) {
