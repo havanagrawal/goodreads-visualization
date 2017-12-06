@@ -96,7 +96,7 @@
     <div class="container-fluid">
 
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-7">
           <div class="chart-wrapper">
             <div class="chart-title">
               Calendar Chart: Publish Dates Through The Years
@@ -107,11 +107,10 @@
               </div>
             </div>
             <div class="chart-notes">
-              Notes about this chart
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-5">
           <div class="chart-wrapper">
             <div class="chart-title">
               Genre Selector
@@ -189,9 +188,6 @@
                     <br/>
                   </div>
                 </div>
-
-
-
               </div>
             </div>
             <div class="chart-notes">
@@ -200,17 +196,18 @@
           </div>
         </div>
 
-        <div class="col-sm-6 col-md-4">
+
+        <!-- Common Legend for Spider + Line chart-->
+        <div class="col-sm-6 col-md-5">
           <div class="chart-wrapper">
             <div class="chart-title">
               Legend
             </div>
             <div class="chart-stage">
-              <div id="legend" style="height: 100px">
+              <div id="legend" style="height: 90px">
               </div>
             </div>
             <div class="chart-notes">
-              Slider both ends of the time slider
             </div>
           </div>
         </div>
@@ -219,42 +216,28 @@
       <div class="row" >
 
         <!-- Radar/Spider Chart for Genres -->
-        <div class="col-sm-6 col-md-8">
+        <div class="col-sm-6 col-md-7">
           <div class="chart-wrapper">
             <div class="chart-title">
-              Radar Chart: Comparison of Genres
+              Radar Chart: Comparison of Genres (Average Values Aggregated By Genre)
             </div>
             <div class="chart-stage" style="height:700px" id="radar_container">
               <div id="chart"></div>
             </div>
             <div class="chart-notes">
-              Notes about this chart
             </div>
           </div>
         </div>
 
-        <!--
-        <div class="col-sm-6 col-md-4">
-          <div class="chart-wrapper">
-            <div class="chart-title">
-              Cell Title
-            </div>
-            <div class="chart-stage">
-              <img data-src="holder.js/100%x120/white">
-            </div>
-            <div class="chart-notes">
-              Notes about this chart
-            </div>
-          </div>
-        </div>
-      -->
-        <div class="col-sm-6 col-md-4">
+
+        <!-- Time Slider -->
+        <div class="col-sm-6 col-md-5">
           <div class="chart-wrapper">
             <div class="chart-title">
               Time Slider
             </div>
             <div class="chart-stage" style="height: 100px;">
-              <div class="slider-container" style="margin-left:30px;" >
+              <div class="slider-container" style="margin-left:30px;margin-top: 40px" >
                 <input type="text" id="slider" class="slider" />
               </div>
             </div>
@@ -264,7 +247,9 @@
           </div>
         </div>
 
-        <div class="col-sm-6 col-md-4">
+
+        <!-- Fame To Male Ratio Line Chart-->
+        <div class="col-sm-6 col-md-5">
           <div class="chart-wrapper">
             <div class="chart-title">
               Female to Male Protagonist Ratio

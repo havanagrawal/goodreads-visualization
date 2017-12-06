@@ -4,7 +4,7 @@ $(document).ready(function(){
 		{
         target: '#slider',
         values: {min:1980,max:2017},
-				width:500,
+				width:650,
         range: true,
         step: 1,
 				scale:false,
@@ -12,7 +12,6 @@ $(document).ready(function(){
         onChange: function (vals) {
 						var arr = vals.split(',');
 						var yarr = [parseInt(arr[0]),parseInt(arr[1])];
-						//console.log(yarr)
 						drawChart(yarr);
 						yearUpdated(yarr[0], yarr[1]);
         }

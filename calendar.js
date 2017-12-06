@@ -17,7 +17,6 @@ function drawChart(yRange=[1980,2017]) {
 		var new_date = []
 
 		var genres = get_currently_selected_genres();
-		console.log(genres);
 
 		calendar_data.forEach(function(d) {
 
@@ -30,7 +29,7 @@ function drawChart(yRange=[1980,2017]) {
 					break;
 				}
 			}
-			
+
 			if (d.date_key != '' && (d.year >= yRange[0] && d.year <= yRange[1]) && !toSkip){
 				if( pdate[d.date_key]  === undefined){
 					pdate[d.date_key] = 1;
@@ -40,8 +39,6 @@ function drawChart(yRange=[1980,2017]) {
 				}
 			}
 		});
-
-		console.log(pdate);
 
 		var dataTable = new google.visualization.DataTable();
 		dataTable.addColumn({ type: 'date', id: 'Date' });
@@ -58,14 +55,15 @@ function drawChart(yRange=[1980,2017]) {
 	   var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
 
 	   var options = {
-		 calendar: { cellSize: 17,
-					 yearLabel: {
-						fontName: 'Times-Roman',
+			 calendar: {
+				 cellSize: 17,
+				 yearLabel: {
+				 		fontName: 'Times-Roman',
 						fontSize: 1
-					}
-		 },
+				 }
+			 },
 		 title: "Book Releases: " + yRange[0] + ' - ' + yRange[1],
-		 height: 350,
+		 height: 450,
 		 tooltip: { isHtml: true }
 	   };
 		chart.draw(dataTable, options);
