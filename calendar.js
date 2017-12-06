@@ -11,13 +11,16 @@ d3.csv("goodreads_extract_vishnu.csv", function(data) {
 	drawChart();
 })
 
-function drawChart(yRange=[1980,2017]) {
+function drawChart(yRange=[1980,2017], genres=null) {
 		var monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
 		var sum = 0;
-		var pdate ={};
+		var pdate = {};
 		var new_date = []
 
-		var genres = get_currently_selected_genres();
+		if (genres == null) {
+			genres = get_currently_selected_genres();
+			console.log(genres);
+		}
 
 		calendar_data.forEach(function(d) {
 
@@ -41,6 +44,9 @@ function drawChart(yRange=[1980,2017]) {
 			}
 		});
 
+		// Delete 29th of February since it messes with the chart.
+		delete pdate['2017-02-29'];
+
 		var dataTable = new google.visualization.DataTable();
 		dataTable.addColumn({ type: 'date', id: 'Date' });
 	  dataTable.addColumn({ type: 'number', id: 'book_n' });
@@ -62,13 +68,14 @@ function drawChart(yRange=[1980,2017]) {
 	   var options = {
 			 calendar: {
 				 cellSize: 18,
+				 daysOfWeek: '',
 				 yearLabel: {
 				 		fontName: 'Times-Roman',
 						fontSize: 1
 				 }
 			 },
 		 title: "Book Releases: " + yRange[0] + ' - ' + yRange[1],
-		 height: 450,
+		 height: 300,
 		 tooltip: { isHtml: true }
 	   };
 		chart.draw(dataTable, options);

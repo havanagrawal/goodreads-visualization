@@ -194,14 +194,17 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
               .attr("id", "legend_" + k)
               .style("background-color", color(y))
               .on('mouseover', function(d, i) {
-                console.log("Mouseover on legend!");
-
                 var id = $(this).attr("id")
                 id_number = id.substr(id.indexOf("_") + 1)
 
                 z = "polygon." + "radar-chart-serie" + id_number;
                 z2 = "#lineid_" + id_number
                 color = d3.select(this).style("background-color")
+
+                var genre = $(this).next("p").text()
+                var year_range = get_current_year_range()
+
+                drawChart(year_range, [genre]);
 
                 d3.selectAll(".line")
                   .transition(200)
@@ -231,6 +234,9 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
 
                 d3.selectAll(".line")
                   .style("stroke-opacity", 0.8);
+
+                var year_range = get_current_year_range();
+                drawChart(year_range);
           		});
             series.append('p').text(y);
             yObjs[y].legend = series;
