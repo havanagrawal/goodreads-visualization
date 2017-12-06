@@ -1,5 +1,7 @@
 var all_years = new Array(2017 - 1912).fill().map((d, i) => i + 1912);
 
+var choice = 'num_pages'
+
 function onClickHandler(cb) {
 	inputControlUpdateHandler()
 }
@@ -10,14 +12,13 @@ function yearUpdated() {
 
 function inputControlUpdateHandler() {
 	var checked = get_currently_selected_genres();
-	$("#legend").html("");
 
 	var fromTo = get_current_year_range();
 	var yearRange = makeYearRange(fromTo[0], fromTo[1]);
 
 	populate_pill_values(yearRange);
 	redraw_chart(checked, yearRange);
-	draw_line_chart(checked, yearRange);
+	draw_line_chart(choice);
 	drawChart(fromTo);
 }
 
@@ -26,6 +27,15 @@ function makeYearRange(from, to) {
 }
 
 var globalData = [];
+
+var line_chart_data = {}
+var name_map = {}
+
+name_map['avg_ratings'] = 'Average Ratings';
+name_map['kindle_price'] = 'Kindle Price';
+name_map['num_ratings'] = 'Number of Ratings';
+name_map['num_pages'] = 'Number of Pages';
+name_map['num_reviews'] = 'Number of Reviews';
 
 d3.csv("data/goodreads_extract_semifinal.csv", function(error, data) {
 	if (error) {
@@ -43,36 +53,53 @@ d3.csv("data/goodreads_extract_semifinal.csv", function(error, data) {
 	var years = data.map(d => +d.publish_year);
 	years = years.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
 
+	line_chart_data['avg_ratings'] = make_line_chart_data(data, 'avg_ratings');
+	line_chart_data['kindle_price'] = make_line_chart_data(data, 'kindle_price');
+	line_chart_data['num_ratings'] = make_line_chart_data(data, 'num_ratings');
+	line_chart_data['num_pages'] = make_line_chart_data(data, 'num_pages');
+	line_chart_data['num_reviews'] = make_line_chart_data(data, 'num_reviews');
+
 	populate_pill_values(years);
 	redraw_chart(genres, years);
+	draw_line_chart(choice);
 });
+
+function make_line_chart_data(data, feature) {
+	var line_data = [];
+
+	var all_genres = get_all_genres();
+
+	for (i in all_years) {
+		var year = all_years[i]
+		var filtered_data = data.filter(d => +d.publish_year == year)
+
+		var year_map = numerical_mean(filtered_data, all_genres, feature)
+		year_map['year'] = year
+
+		line_data.push(year_map);
+	}
+
+	return line_data;
+}
 
 var line_data = []
 
-d3.csv('data/female_male_ratio.csv', function(error, data) {
-	if (error) {
-		throw error
-	}
-
-	line_data = data;
-
-	var checked = get_currently_selected_genres();
-
-	draw_line_chart(checked, all_years)
-})
-
-function draw_line_chart(genres, years) {
+function draw_line_chart(feature_name) {
+	var data = line_chart_data[feature_name]
 
 	var plot_map = {}
+	var genres = get_currently_selected_genres();
+	var fromTo = get_current_year_range()
+	var years = makeYearRange(fromTo[0], fromTo[1])
 
 	for (i in genres) {
 		var genre = genres[i];
 		plot_map[genre] = {column: genre}
 	}
 
-	var filtered_data = line_data.filter(d => years.indexOf(+d.year) != -1)
+	var filtered_data = data.filter(d => years.indexOf(+d.year) != -1)
 
-	var chart = makeLineChart(filtered_data, 'year', plot_map , {xAxis: 'Years', yAxis: 'Mean Female-To-Male Ratio'});
+	var chart = makeLineChart(filtered_data, 'year', plot_map , {xAxis: 'Years', yAxis: name_map[feature_name]});
 
 	$("#chart-line1").html("");
 

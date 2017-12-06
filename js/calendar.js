@@ -19,7 +19,6 @@ function drawChart(yRange=[1980,2017], genres=null) {
 
 		if (genres == null) {
 			genres = get_currently_selected_genres();
-			console.log(genres);
 		}
 
 		calendar_data.forEach(function(d) {

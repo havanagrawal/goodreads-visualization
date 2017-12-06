@@ -185,9 +185,11 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
 
         //Draw legend
         //var legend = chartObj.mainDiv.append('div').attr("class", "legend");
+        console.log("Drawing legend!");
+        $('#legend').html("")
         var legend = d3.select("#legend").append('div').attr("class", "legend");
         var k = 0;
-        for (var y  in yObjs) {
+        for (var y in yObjs) {
             series = legend.append('div');
             series.append('div')
               .attr("class", "series-marker")
