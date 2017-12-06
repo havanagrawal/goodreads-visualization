@@ -27,7 +27,7 @@ function makeYearRange(from, to) {
 
 var globalData = [];
 
-d3.csv("goodreads_extract_semifinal.csv", function(error, data) {
+d3.csv("data/goodreads_extract_semifinal.csv", function(error, data) {
 	if (error) {
 		throw error;
 	}
@@ -49,7 +49,7 @@ d3.csv("goodreads_extract_semifinal.csv", function(error, data) {
 
 var line_data = []
 
-d3.csv('line_data_clean.csv', function(error, data) {
+d3.csv('data/female_male_ratio.csv', function(error, data) {
 	if (error) {
 		throw error
 	}

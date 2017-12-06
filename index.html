@@ -19,17 +19,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  	<script type="text/javascript" src="rSlider.min.js"></script>
-    <script type="text/javascript" src="calendar.js"></script>
-  	<script type="text/javascript" src="slider.js"></script>
+  	<script type="text/javascript" src="js/rSlider.min.js"></script>
+    <script type="text/javascript" src="js/calendar.js"></script>
+  	<script type="text/javascript" src="js/slider.js"></script>
 
-	  <script type="text/javascript" src="RadarChart.js"></script>
-    <script type="text/javascript" src="multiline.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+	  <script type="text/javascript" src="js/RadarChart.js"></script>
+    <script type="text/javascript" src="js/multiline.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="keen-dashboards.css" />
-    <link rel="stylesheet" type="text/css" href="mycss.css" />
-    <link rel="stylesheet" href="rSlider.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/keen-dashboards.css" />
+    <link rel="stylesheet" type="text/css" href="css/mycss.css" />
+    <link rel="stylesheet" type="text/css" href="css/rSlider.min.css" />
 
     <style>
   		body {
@@ -112,6 +112,8 @@
             </div>
           </div>
         </div>
+
+        <!-- Genre selector -->
         <div class="col-sm-5">
           <div class="chart-wrapper">
             <div class="chart-title">
@@ -147,12 +149,12 @@
                   </div>
 
                   <div class="col-sm-4">
-                    <input type="checkbox" name="genre" value="Biography" onclick="onClickHandler(this)"/> Biography
-                    <span id="Biography" class="pill">0</span>
+                    <input type="checkbox" name="genre" value="Historical" onclick="onClickHandler(this)"/> Historical
+                    <span id="Historical" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Horror" onclick="onClickHandler(this)"/> Horror
-                    <span id="Horror" class="pill">0</span>
+                    <input type="checkbox" name="genre" value="Classics" onclick="onClickHandler(this)"/> Classics
+                    <span id="Classics" class="pill">0</span>
                     <br/>
 
                     <input type="checkbox" name="genre" value="Science Fiction" onclick="onClickHandler(this)"/> Science Fiction
@@ -163,8 +165,8 @@
                     <span id="Romance" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Adventure" onclick="onClickHandler(this)"/> Adventure
-                    <span id="Adventure" class="pill">0</span>
+                    <input type="checkbox" name="genre" value="Contemporary" onclick="onClickHandler(this)"/> Contemporary
+                    <span id="Contemporary" class="pill">0</span>
                     <br/>
                   </div>
 
@@ -177,16 +179,16 @@
                     <span id="Mystery" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Magic" onclick="onClickHandler(this)"/> Magic
-                    <span id="Magic" class="pill">0</span>
+                    <input type="checkbox" name="genre" value="Cultural" onclick="onClickHandler(this)"/> Cultural
+                    <span id="Cultural" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Nonfiction" onclick="onClickHandler(this)"/> Non Fiction
-                    <span id="Nonfiction" class="pill">0</span>
+                    <input type="checkbox" name="genre" value="Paranormal" onclick="onClickHandler(this)"/> Paranormal
+                    <span id="Paranormal" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Humor" onclick="onClickHandler(this)"/> Humor
-                    <span id="Humor" class="pill">0</span>
+                    <input type="checkbox" name="genre" value="Suspense" onclick="onClickHandler(this)"/> Suspense
+                    <span id="Suspense" class="pill">0</span>
                     <br/>
                   </div>
                 </div>
@@ -228,6 +230,7 @@
               <div id="chart"></div>
             </div>
             <div class="chart-notes">
+              Hover over a genre to focus
             </div>
           </div>
         </div>
