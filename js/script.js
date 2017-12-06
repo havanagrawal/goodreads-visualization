@@ -165,11 +165,13 @@ function get_all_genres() {
 function redraw_chart(genres, years) {
 	var data = globalData.filter(d => years.indexOf(+d.publish_year) != -1);
 
-	mean_avg_rating_per_genre = calculate_mean_avg_rating_per_genre(data, genres);
-	mean_total_reviews_per_genre = calculate_mean_total_reviews_per_genre(data, genres);
-	mean_total_ratings_per_genre = calculate_mean_total_ratings_per_genre(data, genres);
-	mean_total_pages_per_genre = calculate_mean_total_pages_per_genre(data, genres);
-	mean_total_price_per_genre = calculate_mean_price_per_genre(data, genres);
+	var per_genre_map = {}
+
+	per_genre_map['avg_rating'] = calculate_mean_avg_rating_per_genre(data, genres);
+	per_genre_map['num_reviews'] = calculate_mean_total_reviews_per_genre(data, genres);
+	per_genre_map['num_ratings'] = calculate_mean_total_ratings_per_genre(data, genres);
+	per_genre_map['num_pages'] = calculate_mean_total_pages_per_genre(data, genres);
+	per_genre_map['kindle_price'] = calculate_mean_price_per_genre(data, genres);
 
 	/*console.log("Mean Average Ratings")
 	console.log(mean_avg_rating_per_genre)
@@ -180,32 +182,42 @@ function redraw_chart(genres, years) {
 	console.log(mean_total_price_per_genre)*/
 
 	var d = []
+	var maxMap = {'avg_ratings': 0, 'num_reviews': 0, 'num_ratings' : 0, 'num_pages': 0, 'kindle_price': 0}
 	for (idx in genres) {
 		genre = genres[idx]
+
+		for (key in per_genre_map) {
+			if (per_genre_map[key][genre] > maxMap[key]) {
+				maxMap[key] = per_genre_map[key][genre]
+				var s = parseInt(maxMap[key]).toString()
+				maxMap[key] = (+s[0] + 1) * Math.pow(10, s.length - 1)
+			}
+		}
+
 		d.push([
 			{
 				axis: "Average Rating",
-				value: mean_avg_rating_per_genre[genre],
+				value: per_genre_map['avg_rating'][genre],
 				id: "avg_ratings"
 			},
 			{
 				axis: "Number of Reviews",
-				value: mean_total_reviews_per_genre[genre],
+				value: per_genre_map['num_reviews'][genre],
 				id: "num_reviews"
 			},
 			{
 				axis: "Number of Ratings",
-				value: mean_total_ratings_per_genre[genre],
+				value: per_genre_map['num_ratings'][genre],
 				id: "num_ratings"
 			},
 			{
 				axis: "Number of Pages",
-				value: mean_total_pages_per_genre[genre],
+				value: per_genre_map['num_pages'][genre],
 				id: "num_pages"
 			},
 			{
 				axis: 'Kindle Price ($)',
-				value: mean_total_price_per_genre[genre],
+				value: per_genre_map['kindle_price'][genre],
 				id: 'kindle_price'
 			}
 		])
@@ -215,7 +227,13 @@ function redraw_chart(genres, years) {
 	var mycfg = {
 	  w: $("#radar_container").width() - 600,
 	  h: $("#radar_container").width() - 600,
-	  maxValue: [5, 6000, 100000, 500, 10, 1],
+	  maxValue: [
+			5,
+			Math.max(6000, maxMap['num_reviews']),
+			Math.max(100000, maxMap['num_ratings']),
+			Math.max(500, maxMap['num_pages']),
+			Math.max(10, maxMap['kindle_price']),
+			1],
 	  levels: 5,
 	  ExtraWidthX: 500,
 		TranslateX: 250
