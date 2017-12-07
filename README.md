@@ -12,7 +12,9 @@ The dataset was scraped from Goodreads, and the related project is [here](https:
 
 ## Contributors
 
-| [<img src="https://avatars3.githubusercontent.com/u/7271807?s=400&v=4" width="48"> <sub>Havan Agrawal </sub>](https://github.com/havanagrawal) | [<img src="https://avatars3.githubusercontent.com/u/4328817?s=460&v=4" width="48"> <sub>Vishnu Nandakumar</sub>](https://github.com/vivanvish) | [<img src="https://avatars2.githubusercontent.com/u/17194636?s=460&v=4" width="48"> <sub> Purshottam Shivraj </sub>](https://github.com/pshivraj) |
+||||
+|:---:|:---:|:---:|
+|[<img src="https://avatars3.githubusercontent.com/u/7271807?s=400&v=4" width="48"> <br/><sub>Havan Agrawal </sub>](https://github.com/havanagrawal) | [<img src="https://avatars3.githubusercontent.com/u/4328817?s=460&v=4" width="48"> <br/><sub>Vishnu Nandakumar</sub>](https://github.com/vivanvish) | [<img src="https://avatars2.githubusercontent.com/u/17194636?s=460&v=4" width="48"> <br/><sub> Purshottam Shivraj </sub>](https://github.com/pshivraj) |
 
 
 ## Acknowledgements
