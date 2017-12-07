@@ -105,11 +105,13 @@ var RadarChart = {
 		.style("stroke", "grey")
 		.style("stroke-width", "1px");
 
+  // Axis labels
 	axis.append("text")
 		.attr("class", "legend axistext")
 		.text(function(d){return d})
 		.style("font-family", "sans-serif")
 		.style("font-size", "12px")
+    .style("font-weight", "bold")
 		.attr("text-anchor", "middle")
 		.attr("dy", "1.5em")
 		.attr("transform", function(d, i){return "translate(0, -10)"})

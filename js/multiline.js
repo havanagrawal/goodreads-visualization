@@ -9,7 +9,7 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
      */
 
     chartObj.data = dataset;
-    chartObj.margin = {top: 15, right: 60, bottom: 30, left: 50};
+    chartObj.margin = {top: 15, right: 20, bottom: 30, left: 70};
     chartObj.width = 650 - chartObj.margin.left - chartObj.margin.right;
     chartObj.height = 580 - chartObj.margin.top - chartObj.margin.bottom;
 
@@ -156,6 +156,8 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
 
 
         // Draw Axis
+
+        // X Axis
         chartObj.svg.append("g")
           .attr("class", "x axis")
           .attr("transform", "translate(0," + chartObj.height + ")")
@@ -166,7 +168,18 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
           .attr("y", 30).style("text-anchor", "middle")
           .text(chartObj.xAxisLable);
 
-        chartObj.svg.append("g").attr("class", "y axis").call(chartObj.yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", -42).attr("x", -chartObj.height / 2).attr("dy", ".71em").style("text-anchor", "middle").text(chartObj.yAxisLable);
+        // Y Axis
+        chartObj.svg.append("g")
+          .attr("class", "y axis")
+          .call(chartObj.yAxis)
+          .append("text")
+          .attr("class", "label")
+          .attr("transform", "rotate(-90)")
+          .attr("y", -60)
+          .attr("x", -chartObj.height / 2)
+          .attr("dy", ".71em")
+          .style("text-anchor", "middle")
+          .text(chartObj.yAxisLable);
 
         //Draw tooltips
         var focus = chartObj.svg.append("g").attr("class", "focus").style("display", "none");
