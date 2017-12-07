@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 var calendar_data = []
 
-d3.csv("goodreads_extract_vishnu.csv", function(data) {
+d3.csv("data/goodreads_extract_vishnu.csv", function(data) {
 	calendar_data = data;
 	drawChart();
 })

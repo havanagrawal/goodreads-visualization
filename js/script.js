@@ -37,7 +37,13 @@ function makeYearRange(from, to) {
 
 var globalData = [];
 
-var line_chart_data = {}
+var line_chart_data = {
+	'avg_ratings': [],
+	'kindle_price': [],
+	'num_ratings': [],
+	'num_pages': [],
+	'num_reviews': []
+}
 var name_map = {}
 
 name_map['avg_ratings'] = 'Average Ratings';
