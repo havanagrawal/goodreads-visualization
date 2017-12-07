@@ -184,8 +184,6 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
         focus.append("line").attr("class", "focus line").attr("y1", 0).attr("y2", chartObj.height);
 
         //Draw legend
-        //var legend = chartObj.mainDiv.append('div').attr("class", "legend");
-        console.log("Drawing legend!");
         $('#legend').html("")
         var legend = d3.select("#legend").append('div').attr("class", "legend");
         var k = 0;
