@@ -77,6 +77,11 @@ d3.csv("data/goodreads_extract_semifinal.csv", function(error, data) {
 	populate_pill_values(years);
 	redraw_chart(genres, years);
 	draw_line_chart(choice);
+
+	console.log("WIDTH: " + $('#radar_container').css('width'));
+
+	var radar_width = $('#radar_container').css('width').split('p')[0]
+	$('#radar_container').height(radar_width/1.4)
 });
 
 function make_line_chart_data(data, feature) {
@@ -114,7 +119,7 @@ function draw_line_chart(feature_name) {
 
 	var filtered_data = data.filter(d => years.indexOf(+d.year) != -1)
 
-	var chart = makeLineChart(filtered_data, 'year', plot_map , {xAxis: 'Years', yAxis: name_map[feature_name]});
+	var chart = makeLineChart(filtered_data, 'year', plot_map , {xAxis: 'Publish Years', yAxis: name_map[feature_name]});
 
 	$("#chart-line1").html("");
 
@@ -231,8 +236,8 @@ function redraw_chart(genres, years) {
 
 	//Options for the Radar chart, other than default
 	var mycfg = {
-	  w: $("#radar_container").width() - 600,
-	  h: $("#radar_container").width() - 600,
+	  w: $("#radar_container").width() - 400,
+	  h: $("#radar_container").width() - 400,
 	  maxValue: [
 			5,
 			Math.max(6000, maxMap['num_reviews']),
@@ -241,8 +246,8 @@ function redraw_chart(genres, years) {
 			Math.max(10, maxMap['kindle_price']),
 			1],
 	  levels: 5,
-	  ExtraWidthX: 500,
-		TranslateX: 250
+	  ExtraWidthX: 300,
+		TranslateX: (400)/2			// ($("#radar_container").width() - w) / 2
 	}
 
 	//Call function to draw the Radar chart

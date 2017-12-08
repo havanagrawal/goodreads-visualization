@@ -8,6 +8,12 @@ var calendar_data = []
 
 d3.csv("data/goodreads_extract_vishnu.csv", function(data) {
 	calendar_data = data;
+
+	var calendar_width = $('#calendar_chart').css('width').split('p')[0]
+	var cell_size = (calendar_width - 150)/52
+
+	$("#calendar_chart").height(11*cell_size + 100)
+
 	drawChart();
 })
 
@@ -66,7 +72,7 @@ function drawChart(yRange=[1980,2017], genres=null) {
 
 	   var options = {
 			 calendar: {
-				 cellSize: 18,
+				 cellSize: ($('#calendar_chart').width() - 150) / 52,
 				 daysOfWeek: '',
 				 yearLabel: {
 				 		fontName: 'Times-Roman',
@@ -74,7 +80,7 @@ function drawChart(yRange=[1980,2017], genres=null) {
 				 }
 			 },
 		 title: "Book Releases: " + yRange[0] + ' - ' + yRange[1],
-		 height: 300,
+		 height: $('#calendar_chart').height() - 100,
 		 tooltip: { isHtml: true }
 	   };
 		chart.draw(dataTable, options);

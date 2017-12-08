@@ -98,7 +98,7 @@
       <div class="row">
 
         <!-- Calendar Chart -->
-        <div class="col-sm-7">
+        <div class="col-sm-7" style="margin-bottom: 40px">
           <div class="chart-wrapper">
             <div class="chart-title">
               Calendar Chart: Publish Dates Through The Years
@@ -125,6 +125,34 @@
               <div id="genre_selector">
                 <div class="row">
                   <div class="col-sm-3">
+
+                    <input type="checkbox" name="genre" value="Childrens" onclick="onClickHandler(this)"/> Children
+                    <span id="Childrens" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Classics" onclick="onClickHandler(this)"/> Classics
+                    <span id="Classics" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Contemporary" onclick="onClickHandler(this)"/> Contemporary
+                    <span id="Contemporary" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Crime" onclick="onClickHandler(this)" checked="checked"/> Crime
+                    <span id="Crime" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Cultural" onclick="onClickHandler(this)"/> Cultural
+                    <span id="Cultural" class="pill">0</span>
+                    <br/>
+
+                  </div>
+
+                  <div class="col-sm-1">
+                  </div>
+
+                  <div class="col-sm-4">
+
                     <input type="checkbox" name="genre" value="Fantasy" onclick="onClickHandler(this)" checked="checked"/> Fantasy
                     <span id="Fantasy" class="pill">0</span>
                     <br/>
@@ -132,65 +160,39 @@
                     <input type="checkbox" name="genre" value="Fiction" onclick="onClickHandler(this)" checked="checked"/> Fiction
                     <span id="Fiction" class="pill">0</span>
                     <br/>
-                    </span>
 
-                    <input type="checkbox" name="genre" value="Crime" onclick="onClickHandler(this)" checked="checked"/> Crime
-                    <span id="Crime" class="pill">0</span>
-                    <br/>
-
-                    <input type="checkbox" name="genre" value="Thriller" onclick="onClickHandler(this)" checked="checked"/> Thriller
-                    <span id="Thriller" class="pill">0</span>
-                    <br/>
-
-                    <input type="checkbox" name="genre" value="Childrens" onclick="onClickHandler(this)"/> Children
-                    <span id="Childrens" class="pill">0</span>
-                    <br/>
-                  </div>
-
-                  <div class="col-sm-1">
-                  </div>
-
-                  <div class="col-sm-4">
                     <input type="checkbox" name="genre" value="Historical" onclick="onClickHandler(this)"/> Historical
                     <span id="Historical" class="pill">0</span>
-                    <br/>
-
-                    <input type="checkbox" name="genre" value="Classics" onclick="onClickHandler(this)"/> Classics
-                    <span id="Classics" class="pill">0</span>
-                    <br/>
-
-                    <input type="checkbox" name="genre" value="Science Fiction" onclick="onClickHandler(this)"/> Science Fiction
-                    <span id="Science Fiction" class="pill">0</span>
-                    <br/>
-
-                    <input type="checkbox" name="genre" value="Romance" onclick="onClickHandler(this)"/> Romance
-                    <span id="Romance" class="pill">0</span>
-                    <br/>
-
-                    <input type="checkbox" name="genre" value="Contemporary" onclick="onClickHandler(this)"/> Contemporary
-                    <span id="Contemporary" class="pill">0</span>
-                    <br/>
-                  </div>
-
-                  <div class="col-sm-4">
-                    <input type="checkbox" name="genre" value="Young Adult" onclick="onClickHandler(this)"/> Young Adult
-                    <span id="Young Adult" class="pill">0</span>
                     <br/>
 
                     <input type="checkbox" name="genre" value="Mystery" onclick="onClickHandler(this)"/> Mystery
                     <span id="Mystery" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Cultural" onclick="onClickHandler(this)"/> Cultural
-                    <span id="Cultural" class="pill">0</span>
-                    <br/>
-
                     <input type="checkbox" name="genre" value="Paranormal" onclick="onClickHandler(this)"/> Paranormal
                     <span id="Paranormal" class="pill">0</span>
+                    <br/>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <input type="checkbox" name="genre" value="Romance" onclick="onClickHandler(this)"/> Romance
+                    <span id="Romance" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Science Fiction" onclick="onClickHandler(this)"/> Science Fiction
+                    <span id="Science Fiction" class="pill">0</span>
                     <br/>
 
                     <input type="checkbox" name="genre" value="Suspense" onclick="onClickHandler(this)"/> Suspense
                     <span id="Suspense" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Thriller" onclick="onClickHandler(this)" checked="checked"/> Thriller
+                    <span id="Thriller" class="pill">0</span>
+                    <br/>
+
+                    <input type="checkbox" name="genre" value="Young Adult" onclick="onClickHandler(this)"/> Young Adult
+                    <span id="Young Adult" class="pill">0</span>
                     <br/>
                   </div>
                 </div>
@@ -208,7 +210,7 @@
             <div class="chart-title">
               Time Slider
             </div>
-            <div class="chart-stage" style="height: 100px;">
+            <div class="chart-stage" style="height: 100px;" id="slider-div">
               <div class="slider-container" style="margin-left:30px;margin-top: 40px" >
                 <input type="text" id="slider" class="slider" />
               </div>

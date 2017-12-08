@@ -4,7 +4,7 @@ $(document).ready(function(){
 		{
         target: '#slider',
         values: {min:1980,max:2017},
-				width:630,
+				width: $('#slider-div').width() - 100,
         range: true,
         step: 1,
 				scale:false,
