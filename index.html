@@ -119,30 +119,39 @@
         <div class="col-sm-5">
           <div class="chart-wrapper">
             <div class="chart-title">
-              Genre Selector
+              <div class="row">
+                <div class="col-md-8">
+                  Genre Selector
+                </div>
+                <div class="col-md-4">
+                  <div class='btn' style="border: 1px solid black; padding: 4px" onclick="resetGenres()">Reset Defaults</div>
+                </div>
+              </div>
+
+
             </div>
             <div class="chart-stage">
               <div id="genre_selector">
                 <div class="row">
                   <div class="col-sm-3">
 
-                    <input type="checkbox" name="genre" value="Childrens" onclick="onClickHandler(this)"/> Children
+                    <input type="checkbox" name="genre" value="Childrens" id="check-Childrens" onclick="onClickHandler(this)"/> Children
                     <span id="Childrens" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Classics" onclick="onClickHandler(this)"/> Classics
+                    <input type="checkbox" name="genre" value="Classics" id="check-Classics" onclick="onClickHandler(this)"/> Classics
                     <span id="Classics" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Contemporary" onclick="onClickHandler(this)"/> Contemporary
+                    <input type="checkbox" name="genre" value="Contemporary" id="check-Contemporary" onclick="onClickHandler(this)"/> Contemporary
                     <span id="Contemporary" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Crime" onclick="onClickHandler(this)" checked="checked"/> Crime
+                    <input type="checkbox" name="genre" value="Crime" id="check-Crime" onclick="onClickHandler(this)" checked="checked"/> Crime
                     <span id="Crime" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Cultural" onclick="onClickHandler(this)"/> Cultural
+                    <input type="checkbox" name="genre" value="Cultural" id="check-Cultural" onclick="onClickHandler(this)"/> Cultural
                     <span id="Cultural" class="pill">0</span>
                     <br/>
 
@@ -153,45 +162,45 @@
 
                   <div class="col-sm-4">
 
-                    <input type="checkbox" name="genre" value="Fantasy" onclick="onClickHandler(this)" checked="checked"/> Fantasy
+                    <input type="checkbox" name="genre" value="Fantasy" id="check-Fantasy" onclick="onClickHandler(this)" checked="checked"/> Fantasy
                     <span id="Fantasy" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Fiction" onclick="onClickHandler(this)" checked="checked"/> Fiction
+                    <input type="checkbox" name="genre" value="Fiction" id="check-Fiction" onclick="onClickHandler(this)" checked="checked"/> Fiction
                     <span id="Fiction" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Historical" onclick="onClickHandler(this)"/> Historical
+                    <input type="checkbox" name="genre" value="Historical" id="check-Historical" onclick="onClickHandler(this)"/> Historical
                     <span id="Historical" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Mystery" onclick="onClickHandler(this)"/> Mystery
+                    <input type="checkbox" name="genre" value="Mystery" id="check-Mystery" onclick="onClickHandler(this)"/> Mystery
                     <span id="Mystery" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Paranormal" onclick="onClickHandler(this)"/> Paranormal
+                    <input type="checkbox" name="genre" value="Paranormal" id="check-Paranormal" onclick="onClickHandler(this)"/> Paranormal
                     <span id="Paranormal" class="pill">0</span>
                     <br/>
                   </div>
 
                   <div class="col-sm-4">
-                    <input type="checkbox" name="genre" value="Romance" onclick="onClickHandler(this)"/> Romance
+                    <input type="checkbox" name="genre" value="Romance" id="check-Romance" onclick="onClickHandler(this)"/> Romance
                     <span id="Romance" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Science Fiction" onclick="onClickHandler(this)"/> Science Fiction
+                    <input type="checkbox" name="genre" value="Science Fiction" id="check-Science_Fiction" onclick="onClickHandler(this)"/> Science Fiction
                     <span id="Science Fiction" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Suspense" onclick="onClickHandler(this)"/> Suspense
+                    <input type="checkbox" name="genre" value="Suspense" id="check-Suspense" onclick="onClickHandler(this)"/> Suspense
                     <span id="Suspense" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Thriller" onclick="onClickHandler(this)" checked="checked"/> Thriller
+                    <input type="checkbox" name="genre" value="Thriller" id="check-Thriller" onclick="onClickHandler(this)" checked="checked"/> Thriller
                     <span id="Thriller" class="pill">0</span>
                     <br/>
 
-                    <input type="checkbox" name="genre" value="Young Adult" onclick="onClickHandler(this)"/> Young Adult
+                    <input type="checkbox" name="genre" value="Young Adult" id="check-Young_Adult" onclick="onClickHandler(this)"/> Young Adult
                     <span id="Young Adult" class="pill">0</span>
                     <br/>
                   </div>

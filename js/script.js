@@ -2,6 +2,20 @@ var all_years = new Array(2017 - 1912).fill().map((d, i) => i + 1912);
 
 var choice = 'num_pages'
 
+const defaultGenres = ["Fantasy", "Fiction", "Crime", "Thriller"]
+
+function resetGenres() {
+	$("input[type=checkbox]:checked").each(function(i, e) {
+		e.checked = false;
+	})
+
+	defaultGenres.forEach(function(d) {
+		$("#check-" + d).each(function(i, e) {e.checked = true});
+	});
+
+	inputControlUpdateHandler()
+}
+
 function onClickHandler(cb) {
 	inputControlUpdateHandler()
 }
