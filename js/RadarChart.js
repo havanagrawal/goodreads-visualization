@@ -103,7 +103,7 @@ var RadarChart = {
 		.attr("y2", function(d, i){return cfg.h/2*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
 		.attr("class", "line")
 		.style("stroke", "grey")
-		.style("stroke-width", "1px");
+		.style("stroke-width", "1px")
 
   // Axis labels
 	axis.append("text")
@@ -112,6 +112,7 @@ var RadarChart = {
 		.style("font-family", "sans-serif")
 		.style("font-size", "12px")
     .style("font-weight", "bold")
+    .style("cursor", "pointer")
 		.attr("text-anchor", "middle")
 		.attr("dy", "1.5em")
 		.attr("transform", function(d, i){return "translate(0, -10)"})

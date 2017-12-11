@@ -26,7 +26,8 @@ function yearUpdated() {
 
 function inputControlUpdateHandler() {
 
-	$('.axistext').click(function(elem) {
+	$('.axistext')
+	.click(function(elem) {
 		var axisId = elem.target.id
 		choice = axisId;
 		console.log(choice);
