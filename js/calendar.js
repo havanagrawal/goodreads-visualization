@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 var calendar_data = []
 
-d3.csv("data/goodreads_extract_vishnu.csv", function(data) {
+d3.csv("data/goodreads_extract_vishnu_trimmed.csv", function(data) {
 	calendar_data = data;
 
 	var calendar_width = $('#calendar_chart').css('width').split('p')[0]
@@ -33,7 +33,7 @@ function drawChart(yRange=[1980,2017], genres=null) {
 
 			for (i in genres) {
 				var genre = genres[i];
-				if (d[genre] == "TRUE") {
+				if (d[genre] == "True") {
 					toSkip = false;
 					break;
 				}

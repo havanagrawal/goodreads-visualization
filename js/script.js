@@ -67,7 +67,7 @@ name_map['num_ratings'] = 'Number of Ratings';
 name_map['num_pages'] = 'Number of Pages';
 name_map['num_reviews'] = 'Number of Reviews';
 
-d3.csv("data/goodreads_extract_semifinal.csv", function(error, data) {
+d3.csv("data/goodreads_extract_final_trimmed.csv", function(error, data) {
 	if (error) {
 		throw error;
 	}
